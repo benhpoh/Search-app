@@ -23,6 +23,11 @@ export default class App extends React.Component {
     this.setState({ profile: profile })
   }
 
+  onSubmitSearch = (evt) => {
+    evt.preventDefault()
+    // code to run to commence search
+  }
+
   render() {
     const { query, profile } = this.state
     return (
@@ -34,6 +39,7 @@ export default class App extends React.Component {
             profile={profile}
             onQueryChange={this.onQueryChange}
             onProfileChange={this.onProfileChange}
+            onSubmitSearch={this.onSubmitSearch}
           />
           <SearchResults />
         </div>
