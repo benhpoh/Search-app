@@ -12,7 +12,7 @@ export default class App extends React.Component {
   state = {
     query: "",
     profile: "all",
-    results: []
+    results: {}
   }
   
   onQueryChange = query => {
@@ -26,10 +26,26 @@ export default class App extends React.Component {
   onSubmitSearch = (evt) => {
     evt.preventDefault()
     // code to run to commence search
+    const { query, profile } = this.state
+    let url = "https://ds365api.search365.ai/search"
+
+    axios
+      .post(
+        url, 
+        {
+          query: query,
+          profile: profile
+        }
+      )
+      .then( apiResp => {
+          console.log(apiResp.data);
+          this.setState({ results: apiResp.data})
+        }
+      )
   }
 
   render() {
-    const { query, profile } = this.state
+    const { query, profile,results } = this.state
     return (
       <Router>
         <div className="App">
@@ -41,7 +57,9 @@ export default class App extends React.Component {
             onProfileChange={this.onProfileChange}
             onSubmitSearch={this.onSubmitSearch}
           />
-          <SearchResults />
+          <SearchResults 
+            results={results}
+          />
         </div>
       </Router>
     )

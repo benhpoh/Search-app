@@ -39,5 +39,4 @@ Results stored at:
 
 filterData field:
 What filters are available?
-- datasource, category
-- lastModifed?? 
+- datasource, category, modified, extension
