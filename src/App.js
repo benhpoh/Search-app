@@ -26,9 +26,13 @@ export default class App extends React.Component {
   onSubmitSearch = (evt) => {
     evt.preventDefault()
     // code to run to commence search
+    this.runSearch()
+  }
+
+  runSearch = () => {
     const { query, profile } = this.state
     let url = "https://ds365api.search365.ai/search"
-
+    console.log("sending request to API");
     axios
       .post(
         url, 
@@ -38,10 +42,17 @@ export default class App extends React.Component {
         }
       )
       .then( apiResp => {
+          console.log("response received");
           console.log(apiResp.data);
           this.setState({ results: apiResp.data})
+          console.log("updating state");
         }
       )
+  }
+
+  onClick = (query) => {
+    this.setState({query: query}, () => this.runSearch())
+
   }
 
   render() {
@@ -50,16 +61,19 @@ export default class App extends React.Component {
       <Router>
         <div className="App">
           <Header />
-          <SearchBar 
-            query={query}
-            profile={profile}
-            onQueryChange={this.onQueryChange}
-            onProfileChange={this.onProfileChange}
-            onSubmitSearch={this.onSubmitSearch}
-          />
-          <SearchResults 
-            results={results}
-          />
+          <main className="app-main">
+            <SearchBar 
+              query={query}
+              profile={profile}
+              onQueryChange={this.onQueryChange}
+              onProfileChange={this.onProfileChange}
+              onSubmitSearch={this.onSubmitSearch}
+            />
+            <SearchResults 
+              results={results}
+              onClick={this.onClick}
+            />
+          </main>
         </div>
       </Router>
     )

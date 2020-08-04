@@ -1,0 +1,9 @@
+
+* {
+box-sizing: border-box;
+}
+
+.app-main {
+  width: 60%;
+  margin: 20px auto;
+}

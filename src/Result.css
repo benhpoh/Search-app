@@ -1,0 +1,20 @@
+.result-li {
+  list-style: none;
+}
+.result-title {
+  display: block;
+  font-weight: 400;
+  font-size: 20px;
+  color: blue;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.result-url {
+  text-decoration: none;
+  color: green;
+}
+
+.result-body {
+  margin-top: 10px;
+}

@@ -1,12 +1,16 @@
 import React from 'react'
-
+import './Result.css'
 export default function Results({result}) {
 
   return (
-    <li>
-      <a href={result.url}><h3>{result.title}</h3></a>
-      <a href={result.url}><p>{result.url}</p></a>
-      <p>{result.body}</p>
+    <li className="result-li">
+      <a href={result.url} className="result-title">{result.title}</a>
+      <a href={result.url} className="result-url">{result.url}</a>
+      <p className="result-body">{result.body}</p>
+      <div className="result-details">
+        <div>Source</div>
+        <div>Modified</div>
+      </div>
       
     </li>
   )

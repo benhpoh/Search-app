@@ -1,9 +1,13 @@
 # Search-app
 
 ## Build log
-- Submit button functionality completed. Next step: Tie in async request to get data from API
-- Set state functions incorporated into SearchBar component.
 - Framework set up for essential components.
+- Set state functions incorporated into SearchBar component.
+- Submit button functionality completed. Next step: Tie in async request to get data from API
+- Search functionality completed, data passed in to app's state.
+- State passed through to SearchResults, search results populated once data received.
+- Basic CSS styling across components.
+- Coded did you mean component
 
 ## To Do List
 - ~~Set up components for Header, Search bar, Search results~~
@@ -13,9 +17,12 @@
   - Search input box
   - Search profile category
 - Search results
-  - Create async function to get search results from S365 API
-  - Pass search results to component
+  - ~~Create async function to get search results from S365 API~~
+  - ~~Pass search results to component~~
   - Organize filter method for sorting by date
+- Did you mean?
+  - ~~Enable refreshing search results upon selecting new search term~~
+- Enable filter by date method
 
 ## Thinking out loud
 - Single source for state management at 'App' level, passing relevant info to components
