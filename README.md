@@ -7,7 +7,9 @@
 - Search functionality completed, data passed in to app's state.
 - State passed through to SearchResults, search results populated once data received.
 - Basic CSS styling across components.
-- Coded did you mean component
+- Coded did you mean component.
+- Rectified recursion issue with Did you mean?
+- Toggled disabling searchbar while a search is currently ongoing.
 
 ## To Do List
 - ~~Set up components for Header, Search bar, Search results~~
