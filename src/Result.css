@@ -18,3 +18,14 @@
 .result-body {
   margin-top: 10px;
 }
+
+.result-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 30px;
+}
+
+.result-subdetails {
+  color: rgb(128, 128, 128);
+  font-size: 12px;
+}

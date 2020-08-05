@@ -10,7 +10,9 @@
 - Coded did you mean component.
 - Rectified recursion issue with Did you mean?
 - Toggled disabling searchbar while a search is currently ongoing.
-- Completed function to enable filtering by date
+- Completed function to enable filtering by date.
+- Last Modified & source information added to search results.
+- CSS styling on font.
 
 ## To Do List
 - ~~Set up components for Header, Search bar, Search results~~
@@ -26,6 +28,7 @@
 - Did you mean?
   - ~~Enable refreshing search results upon selecting new search term~~
 - ~~Enable filter by date method~~
+- ~~Place 'Source' and 'Last modified' info into search results~~
 
 ## Thinking out loud
 - Single source for state management at 'App' level, passing relevant info to components
