@@ -31,6 +31,7 @@ export default function SearchBar(props) {
         type="submit"
         className="searchbar-button"
         onClick={evt => props.handleSubmitSearch(evt)}
+        style={props.searchOngoing == true ? {backgroundColor: "#303030", color: "rgb(170, 170, 170)"} : {}}
       >
         Search
       </button>

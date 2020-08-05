@@ -13,6 +13,7 @@
 - Completed function to enable filtering by date.
 - Last Modified & source information added to search results.
 - CSS styling on font.
+- Styled search bar to make it clearer a search is ongoing
 
 ## To Do List
 - ~~Set up components for Header, Search bar, Search results~~

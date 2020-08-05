@@ -15,6 +15,9 @@
 
 .searchbar-button {
   cursor: pointer;
+  margin-left: 2px;
+  border-radius: 0 5px 5px 0;
+  background-color: #dddddd;
 }
 
 .searchbar-input {
