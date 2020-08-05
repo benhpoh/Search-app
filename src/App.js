@@ -92,6 +92,9 @@ export default class App extends React.Component {
               handleFilteredQuery={this.handleFilteredQuery}
             />
           </main>
+          <footer className="app-footer">
+            <p>Built by <a href="https://www.benhpoh.com/about">Ben</a> | Source code on <a href="https://github.com/benhpoh/Search-app">GitHub</a></p>
+          </footer>
         </div>
       </Router>
     )

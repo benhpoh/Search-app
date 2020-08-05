@@ -1,5 +1,6 @@
 nav {
   display: flex;
+  height: 70px;
   align-items: center;
   gap: 20px;
   background-color: rgb(49, 49, 49);
