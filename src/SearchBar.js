@@ -3,20 +3,22 @@ import './SearchBar.css'
 
 export default function SearchBar(props) {
   return (
-    <form className="search-bar">
+    <form className="searchbar">
       <input 
         type="text" 
+        className="searchbar-input"
         value={props.query}
-        onChange={evt => props.onQueryChange(evt.target.value)}
+        onChange={evt => props.handleQueryChange(evt.target.value)}
         placeholder="Enter search terms"
+        disabled={props.searchOngoing}
       />
 
       <select 
         name="profile" 
         id="profile" 
         defaultValue={props.profile}
-        onChange={evt => props.onProfileChange(evt.target.value)}
-        onKeyPress={evt => evt.key === 'Enter' ? props.onSubmitSearch(evt) : null }
+        onChange={evt => props.handleProfileChange(evt.target.value)}
+        onKeyPress={evt => evt.key === 'Enter' ? props.handleSubmitSearch(evt) : null }
       >
         <option value="all">All Sources</option>
         <option value="search365">Search365</option>
@@ -27,7 +29,8 @@ export default function SearchBar(props) {
 
       <button 
         type="submit"
-        onClick={evt => props.onSubmitSearch(evt)}
+        className="searchbar-button"
+        onClick={evt => props.handleSubmitSearch(evt)}
       >
         Search
       </button>

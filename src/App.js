@@ -12,21 +12,26 @@ export default class App extends React.Component {
   state = {
     query: "",
     profile: "all",
-    results: {}
+    results: {},
+    searchOngoing: false
   }
   
-  onQueryChange = query => {
+  handleQueryChange = query => {
     this.setState({ query: query })
   }
 
-  onProfileChange = profile => {
+  handleProfileChange = profile => {
     this.setState({ profile: profile })
   }
 
-  onSubmitSearch = (evt) => {
+  handleQueryUpdate = (query) => {
+    this.setState({query: query, searchOngoing: true}, () => this.runSearch())
+  }
+
+  handleSubmitSearch = (evt) => {
     evt.preventDefault()
     // code to run to commence search
-    this.runSearch()
+    this.setState({searchOngoing: true}, () => this.runSearch())
   }
 
   runSearch = () => {
@@ -44,19 +49,14 @@ export default class App extends React.Component {
       .then( apiResp => {
           console.log("response received");
           console.log(apiResp.data);
-          this.setState({ results: apiResp.data})
+          this.setState({results: apiResp.data, searchOngoing: false})
           console.log("updating state");
         }
       )
   }
 
-  onClick = (query) => {
-    this.setState({query: query}, () => this.runSearch())
-
-  }
-
   render() {
-    const { query, profile,results } = this.state
+    const { query, profile, results, searchOngoing } = this.state
     return (
       <Router>
         <div className="App">
@@ -65,13 +65,15 @@ export default class App extends React.Component {
             <SearchBar 
               query={query}
               profile={profile}
-              onQueryChange={this.onQueryChange}
-              onProfileChange={this.onProfileChange}
-              onSubmitSearch={this.onSubmitSearch}
+              handleQueryChange={this.handleQueryChange}
+              handleProfileChange={this.handleProfileChange}
+              handleSubmitSearch={this.handleSubmitSearch}
+              searchOngoing={searchOngoing}
             />
+
             <SearchResults 
               results={results}
-              onClick={this.onClick}
+              handleQueryUpdate={this.handleQueryUpdate}
             />
           </main>
         </div>
