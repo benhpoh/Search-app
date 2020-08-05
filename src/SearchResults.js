@@ -3,7 +3,7 @@ import Result from './Result.js'
 import DidYouMean from './DidYouMean.js'
 import './SearchResults.css'
 
-export default function SearchResults({results, handleQueryUpdate}) {
+export default function SearchResults({results, handleQueryUpdate, handleFilteredQuery}) {
   let searchSuccesful = results.isSuccess
 
   if (searchSuccesful !== true) {
@@ -13,20 +13,27 @@ export default function SearchResults({results, handleQueryUpdate}) {
   let searchResults = results.body.results
   let currentSearchQuery = results.body.searchDefinition.query
   let didYouMean = results.body.didYouMean[0]
+  let filterCategory = results.body.navigators[0]
 
   return (
     <div className="search-results-container">
-      {currentSearchQuery != didYouMean ? <DidYouMean value={didYouMean} handleQueryUpdate={handleQueryUpdate}/> : ""}
+      {
+        currentSearchQuery != didYouMean ? 
+          <DidYouMean value={didYouMean} handleQueryUpdate={handleQueryUpdate}/> :
+          ""
+      }
+
       <div className="search-layout">
         <aside className="search-filters">
-          <h4>{results.body.navigators[0].displayName} ({results.body.navigators[0].count})</h4>
+          <h4>{filterCategory.displayName} ({filterCategory.count})</h4>
           <div>
-            {results.body.navigators[0].items.map((navigator, index) => 
+            {filterCategory.items.map((navigator, index) => 
               <div key={navigator.name}>
                 <input 
                   type="radio" 
-                  name={results.body.navigators[0].displayName}
+                  name={filterCategory.displayName}
                   value={index}
+                  onClick={(evt) => {handleFilteredQuery(navigator.from, navigator.to)}}
                   disabled={navigator.count <= 0}
                 />
                 <label>

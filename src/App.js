@@ -28,6 +28,10 @@ export default class App extends React.Component {
     this.setState({query: query, searchOngoing: true}, () => this.runSearch())
   }
 
+  handleFilteredQuery = (fromDate, toDate) => {
+    this.setState({searchOngoing: true}, () => this.runDateFilteredSearch(fromDate, toDate))
+  }
+
   handleSubmitSearch = (evt) => {
     evt.preventDefault()
     // code to run to commence search
@@ -39,20 +43,31 @@ export default class App extends React.Component {
     let url = "https://ds365api.search365.ai/search"
     console.log("sending request to API");
     axios
-      .post(
-        url, 
-        {
-          query: query,
-          profile: profile
-        }
-      )
-      .then( apiResp => {
-          console.log("response received");
-          console.log(apiResp.data);
-          this.setState({results: apiResp.data, searchOngoing: false})
-          console.log("updating state");
-        }
-      )
+      .post(url, {
+        query: query,
+        profile: profile
+      })
+      .then( apiResp => this.updateResultsState(apiResp) )
+  }
+
+  runDateFilteredSearch = (fromDate, toDate) => {
+    const { query, profile } = this.state
+    let url = "https://ds365api.search365.ai/search"
+    console.log("sending request to API");
+    axios
+      .post(url, {
+        query: query,
+        profile: profile,
+        filterData: `( modified gt ${fromDate} and modified lt ${toDate})`
+      })
+      .then( apiResp => this.updateResultsState(apiResp) )
+  }
+
+  updateResultsState = (apiResp) => {
+    console.log("response received")
+    console.log(apiResp.data)
+    console.log("updating state")
+    this.setState({results: apiResp.data, searchOngoing: false}, () => console.log("state updated"))
   }
 
   render() {
@@ -69,11 +84,12 @@ export default class App extends React.Component {
               handleProfileChange={this.handleProfileChange}
               handleSubmitSearch={this.handleSubmitSearch}
               searchOngoing={searchOngoing}
-            />
+              />
 
             <SearchResults 
               results={results}
               handleQueryUpdate={this.handleQueryUpdate}
+              handleFilteredQuery={this.handleFilteredQuery}
             />
           </main>
         </div>

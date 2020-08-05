@@ -10,6 +10,7 @@
 - Coded did you mean component.
 - Rectified recursion issue with Did you mean?
 - Toggled disabling searchbar while a search is currently ongoing.
+- Completed function to enable filtering by date
 
 ## To Do List
 - ~~Set up components for Header, Search bar, Search results~~
@@ -21,10 +22,10 @@
 - Search results
   - ~~Create async function to get search results from S365 API~~
   - ~~Pass search results to component~~
-  - Organize filter method for sorting by date
+  - ~~Organize filter method for sorting by date~~
 - Did you mean?
   - ~~Enable refreshing search results upon selecting new search term~~
-- Enable filter by date method
+- ~~Enable filter by date method~~
 
 ## Thinking out loud
 - Single source for state management at 'App' level, passing relevant info to components
